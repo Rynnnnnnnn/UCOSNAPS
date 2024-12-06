@@ -6,20 +6,17 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");  
 }
 
-// Get the album ID from the URL
 $album_id = $_GET['album_id'] ?? null;
 
 if (!$album_id) {
     die("Album ID is required.");
 }
 
-// Fetch album details
 $album = getAlbumById($pdo, $album_id);
 if (!$album) {
     die("Album not found.");
 }
 
-// Fetch photos in the album
 $photos = getPhotosByAlbum($pdo, $album_id);
 ?>
 
@@ -36,7 +33,6 @@ $photos = getPhotosByAlbum($pdo, $album_id);
 
     <h1><?php echo htmlspecialchars($album['album_name']); ?></h1>
 
-    <!-- Album Management Buttons -->
     <div class="albumActions" style="margin-bottom: 20px;">
         <form action="core/handleForms.php" method="POST" style="display: inline;">
             <input type="hidden" name="album_id" value="<?php echo $album_id; ?>">
@@ -50,7 +46,6 @@ $photos = getPhotosByAlbum($pdo, $album_id);
         </form>
     </div>
 
-    <!-- Photo Upload Form -->
     <div class="insertPhotoForm" style="margin-bottom: 20px;">
         <h3>Add a Photo to This Album</h3>
         <form action="core/handleForms.php" method="POST" enctype="multipart/form-data">
@@ -69,7 +64,6 @@ $photos = getPhotosByAlbum($pdo, $album_id);
         </form>
     </div>
 
-    <!-- Display Photos in the Album -->
     <?php if (!empty($photos)) { ?>
         <div class="albumPhotos" style="display: flex; flex-wrap: wrap; gap: 20px;">
             <?php foreach ($photos as $photo) { ?>
