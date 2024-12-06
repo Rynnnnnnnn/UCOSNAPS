@@ -17,7 +17,6 @@ if (!isset($_SESSION['username'])) {
 <body>
     <?php include 'navbar.php'; ?>
 
-    <!-- Photo Upload Form -->
     <div class="insertPhotoForm" style="display: flex; justify-content: center;">
         <form action="core/handleForms.php" method="POST" enctype="multipart/form-data">
             <p>
@@ -45,7 +44,6 @@ if (!isset($_SESSION['username'])) {
         </form>
     </div>
 
-    <!-- Album Creation Form -->
     <div class="albumForm" style="display: flex; justify-content: center;">
         <form action="core/handleForms.php" method="POST">
             <p>
@@ -76,8 +74,6 @@ if (!isset($_SESSION['username'])) {
     <?php } ?>
 </div>
 
-
-    <!-- Display All Photos -->
     <?php $getAllPhotos = getAllPhotos($pdo); ?>
     <?php foreach ($getAllPhotos as $row) { ?>
         <div class="images" style="display: flex; justify-content: center; margin-top: 25px;">
